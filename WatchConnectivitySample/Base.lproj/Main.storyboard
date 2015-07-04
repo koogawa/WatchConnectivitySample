@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8121.20" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8101.16"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="HelveticaNeue.ttc">
@@ -21,15 +22,73 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G7l-9F-O32">
-                                <rect key="frame" x="180" y="236" width="240" height="128"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UoD-PG-tBg">
+                                <rect key="frame" x="20" y="20" width="560" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="pdn-Fp-KyN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Application Context"/>
+                                <connections>
+                                    <action selector="applicationContextButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Xxb-jC-zVF"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tk8-Xg-pdN" userLabel="User Info Transfer">
+                                <rect key="frame" x="20" y="64" width="560" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="zBV-iR-6OB"/>
+                                </constraints>
+                                <state key="normal" title="User Info Transfer"/>
+                                <connections>
+                                    <action selector="userInfoTransferButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ym0-2V-tY2"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="La3-fQ-bkx">
+                                <rect key="frame" x="20" y="110" width="560" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="XOG-e4-XPi"/>
+                                </constraints>
+                                <state key="normal" title="File Transfer"/>
+                                <connections>
+                                    <action selector="fileTransferButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iMR-TX-3AO"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Result" translatesAutoresizingMaskIntoConstraints="NO" id="G7l-9F-O32">
+                                <rect key="frame" x="20" y="198" width="560" height="402"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c4C-VF-oVt">
+                                <rect key="frame" x="20" y="154" width="560" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="voH-aN-XLK"/>
+                                </constraints>
+                                <state key="normal" title="Interactive Message"/>
+                                <connections>
+                                    <action selector="interactiveMessageButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="53q-ly-SPP"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Tk8-Xg-pdN" firstAttribute="top" secondItem="UoD-PG-tBg" secondAttribute="bottom" id="Fwj-ab-X6L"/>
+                            <constraint firstItem="La3-fQ-bkx" firstAttribute="top" secondItem="Tk8-Xg-pdN" secondAttribute="bottom" constant="2" id="Mr4-Uv-Jss"/>
+                            <constraint firstItem="La3-fQ-bkx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Nc5-hH-EVi"/>
+                            <constraint firstItem="UoD-PG-tBg" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="PwK-VC-rag"/>
+                            <constraint firstItem="Tk8-Xg-pdN" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="TMi-Sy-tsF"/>
+                            <constraint firstItem="UoD-PG-tBg" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="XME-K1-lrJ"/>
+                            <constraint firstItem="c4C-VF-oVt" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="XS8-fa-mzz"/>
+                            <constraint firstItem="UoD-PG-tBg" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="cRi-cu-6LV"/>
+                            <constraint firstItem="G7l-9F-O32" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="hiK-Ye-rgu"/>
+                            <constraint firstItem="c4C-VF-oVt" firstAttribute="top" secondItem="La3-fQ-bkx" secondAttribute="bottom" id="jds-ZM-175"/>
+                            <constraint firstItem="La3-fQ-bkx" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="kRE-hg-Q39"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="G7l-9F-O32" secondAttribute="bottom" id="q2S-jx-mzo"/>
+                            <constraint firstItem="G7l-9F-O32" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="rt0-Fw-cZg"/>
+                            <constraint firstItem="c4C-VF-oVt" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="vMn-qp-RBW"/>
+                            <constraint firstItem="Tk8-Xg-pdN" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="wDv-l5-Acj"/>
+                            <constraint firstItem="G7l-9F-O32" firstAttribute="top" secondItem="c4C-VF-oVt" secondAttribute="bottom" id="zCc-KI-5E3"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="resultTextView" destination="G7l-9F-O32" id="5DY-T2-sBd"/>
@@ -37,6 +96,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="269" y="366"/>
         </scene>
     </scenes>
 </document>

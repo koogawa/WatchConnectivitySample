@@ -11,6 +11,7 @@
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UITextView *resultTextView;
+@property (strong, nonatomic) NSDictionary *applicationDict;
 @end
 
 @implementation ViewController
@@ -18,31 +19,48 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     // Do any additional setup after loading the view, typically from a nib.
+    self.applicationDict = @{@"hoge" : @"huga"};
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)didReceiveMemoryWarning
 {
-    [super viewDidAppear:animated];
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 
+- (IBAction)applicationContextButtonTapped:(id)sender
+{
     // Application Context
-    NSDictionary *applicationDict = @{@"hoge" : @"huga"};
     NSError *error = nil;
-    [[WCSession defaultSession] updateApplicationContext:applicationDict error:&error];
+    [[WCSession defaultSession] updateApplicationContext:self.applicationDict
+                                                   error:&error];
     NSLog(@"error = %@", error);
+}
 
+- (IBAction)userInfoTransferButtonTapped:(id)sender
+{
     // User Info Transfer
-    [[WCSession defaultSession] transferUserInfo:applicationDict];
+    [[WCSession defaultSession] transferUserInfo:self.applicationDict];
 
+}
+
+- (IBAction)fileTransferButtonTapped:(id)sender
+{
     // File Transfer
     NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"marimo" ofType:@"png"]];
-    WCSessionFileTransfer *fileTransfer = [[WCSession defaultSession] transferFile:url metadata:applicationDict];
+    WCSessionFileTransfer *fileTransfer = [[WCSession defaultSession] transferFile:url
+                                                                          metadata:self.applicationDict];
     NSLog(@"fileTransfer = %@", fileTransfer);
+}
 
+- (IBAction)interactiveMessageButtonTapped:(id)sender
+{
     // Interactive Message
     if ([[WCSession defaultSession] isReachable])
     {
-        [[WCSession defaultSession] sendMessage:applicationDict
+        [[WCSession defaultSession] sendMessage:self.applicationDict
                                    replyHandler:^(NSDictionary *replyHandler) {
                                        NSLog(@"replyHandler = %@", replyHandler);
                                        dispatch_async(dispatch_get_main_queue(), ^{
@@ -57,12 +75,6 @@
                                    }
          ];
     }
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

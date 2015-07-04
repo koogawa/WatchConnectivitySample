@@ -10,7 +10,7 @@
             <objects>
                 <controller title="Received:" id="AgC-eL-Hgc" customClass="InterfaceController">
                     <items>
-                        <label width="1" height="1" alignment="left" id="rMq-6a-LaK"/>
+                        <label width="1" height="1" alignment="left" numberOfLines="0" id="rMq-6a-LaK"/>
                     </items>
                     <connections>
                         <outlet property="resultLabel" destination="rMq-6a-LaK" id="2Zm-dk-DdX"/>
