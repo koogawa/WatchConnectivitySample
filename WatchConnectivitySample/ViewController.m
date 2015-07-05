@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import <WatchConnectivity/WatchConnectivity.h>
 
-@interface ViewController ()
+@interface ViewController () <WCSessionDelegate>
 @property (weak, nonatomic) IBOutlet UITextView *resultTextView;
 @property (strong, nonatomic) NSDictionary *applicationDict;
 @end
@@ -22,6 +22,12 @@
 
     // Do any additional setup after loading the view, typically from a nib.
     self.applicationDict = @{@"hoge" : @"huga"};
+
+    if ([WCSession isSupported]) {
+        WCSession *session = [WCSession defaultSession];
+        session.delegate = self;
+        [session activateSession];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -75,6 +81,18 @@
                                    }
          ];
     }
+}
+
+#pragma mark - WCSessionDelegate
+
+// Interactive Message
+- (void)session:(nonnull WCSession *)session didReceiveMessage:(nonnull NSDictionary<NSString *,id> *)message replyHandler:(nonnull void (^)(NSDictionary<NSString *,id> * __nonnull))replyHandler
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.resultTextView.text = [NSString stringWithFormat:@"%s: %@", __func__, message];
+    });
+
+    replyHandler(@{@"reply" : @"OK"});
 }
 
 @end

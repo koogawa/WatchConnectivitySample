@@ -32,11 +32,22 @@
     // This method is called when watch view controller is about to be visible to user
     [super willActivate];
 
-    // Application Context
-    NSDictionary *applicationDict = @{@"hoge" : @"huga"};
-    NSError *error = nil;
-    [[WCSession defaultSession] updateApplicationContext:applicationDict error:&error];
-    NSLog(@"error = %@", error);
+    if ([[WCSession defaultSession] isReachable])
+    {
+        [[WCSession defaultSession] sendMessage:@{@"hoge":@"huga"}
+                                   replyHandler:^(NSDictionary *replyHandler) {
+                                       dispatch_async(dispatch_get_main_queue(), ^{
+                                           [self.resultLabel setText:[NSString stringWithFormat:@"replyHandler = %@", replyHandler]];
+                                       });
+                                   }
+                                   errorHandler:^(NSError *error) {
+                                       dispatch_async(dispatch_get_main_queue(), ^{
+                                           [self.resultLabel setText:[NSString stringWithFormat:@"error = %@", error]];
+                                       });
+                                   }
+         ];
+    }
+
 }
 
 - (void)didDeactivate
