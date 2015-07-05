@@ -5,12 +5,17 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="8066.14"/>
     </dependencies>
     <scenes>
-        <!--Received:-->
+        <!--Watch Connectivity-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller title="Received:" id="AgC-eL-Hgc" customClass="InterfaceController">
+                <controller title="Watch Connectivity" id="AgC-eL-Hgc" customClass="InterfaceController">
                     <items>
-                        <label width="1" height="1" alignment="left" numberOfLines="0" id="rMq-6a-LaK"/>
+                        <button width="1" alignment="left" title="Send Message" id="ewp-52-gSX">
+                            <connections>
+                                <action selector="sendMessageButtonTapped" destination="AgC-eL-Hgc" id="eju-ic-5uA"/>
+                            </connections>
+                        </button>
+                        <label width="1" alignment="left" text="Received:" numberOfLines="0" id="rMq-6a-LaK"/>
                     </items>
                     <connections>
                         <outlet property="resultLabel" destination="rMq-6a-LaK" id="2Zm-dk-DdX"/>
